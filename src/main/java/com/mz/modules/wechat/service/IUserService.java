@@ -23,7 +23,7 @@ public interface IUserService  {
 
 
 
-    /**
+    /** 
      * 更新微信用户数据
      * @param user
      * @return

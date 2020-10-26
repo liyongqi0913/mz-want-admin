@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>本地图片预览</title>
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet"/>
+    <style type="text/css">
+        #preview{width:100px;height:100px;border:1px solid #000;overflow:hidden;}
+        #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+    </style>
+    <script type="text/javascript">
+        function previewImage(file)
+        {
+            var MAXWIDTH  = 100;
+            var MAXHEIGHT = 100;
+            var div = document.getElementById('preview');
+            if (file.files && file.files[0])
+            {
+                div.innerHTML = '<img id=imghead>';
+                var img = document.getElementById('imghead');
+                img.onload = function(){
+                    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                    img.width = rect.width;
+                    img.height = rect.height;
+                    img.style.marginLeft = rect.left+'px';
+                    img.style.marginTop = rect.top+'px';
+                }
+                var reader = new FileReader();
+                reader.onload = function(evt){img.src = evt.target.result;}
+                reader.readAsDataURL(file.files[0]);
+            }
+            else
+            {
+                var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+                file.select();
+                var src = document.selection.createRange().text;
+                div.innerHTML = '<img id=imghead>';
+                var img = document.getElementById('imghead');
+                img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+                div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;margin-left:"+rect.left+"px;"+sFilter+src+"\"'></div>";
+            }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+
+        //方式二  原生ajax实现
+        function saveUser() {
+            var file = document.getElementById("file").files[0];
+
+            //原生ajax实现文件上传
+            var formData = new FormData();
+            if (file) {
+                formData.append("file", file);
+            }
+
+            //得到xhr对象
+            var xhr = null;
+            if (XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.open("post", "/file/upload", true);//设置提交方式，url，异步提交
+            xhr.onload = function () {
+                var data = xhr.responseText;    //得到返回值
+                alert(data);
+            }
+            xhr.send(formData);
+        }
+    </script>
+</head>
+<body>
+<div id="preview">
+        <img id="imghead" width=100 height=100 border=0 src='../images/head01_big.jpg'>
+</div>
+<br/>
+<input id="file" type="file" name="file" onchange="previewImage(this)" />
+<a class="btn btn-small btn-danger" onclick="saveUser()">方式二</a>
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

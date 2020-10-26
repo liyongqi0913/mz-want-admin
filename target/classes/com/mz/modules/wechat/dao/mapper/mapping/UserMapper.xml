@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mz.modules.wechat.dao.mapper.UserMapper">
+
+    <!--<resultMap id="userResultMap" type="com.mz.modules.wechat.dao.entity.User">-->
+        <!--<id column="openid" jdbcType="VARCHAR" property="openid" />-->
+        <!--<result column="nickname" jdbcType="VARCHAR" property="nickname" />-->
+        <!--<result column="name" jdbcType="VARCHAR" property="name" />-->
+        <!--<result column="gender" jdbcType="VARCHAR" property="gender" />-->
+        <!--<result column="mobile" jdbcType="VARCHAR" property="mobile" />-->
+        <!--<result column="id_number" jdbcType="VARCHAR" property="idNumber" />-->
+        <!--<result column="email" jdbcType="VARCHAR" property="email" />-->
+        <!--<result column="avatar" jdbcType="VARCHAR" property="avatar" />-->
+        <!--<result column="country" jdbcType="VARCHAR" property="country" />-->
+        <!--<result column="province" jdbcType="VARCHAR" property="province" />-->
+        <!--<result column="city" jdbcType="VARCHAR" property="city" />-->
+        <!--<result column="created_time" jdbcType="datetime" property="createdTime" />-->
+        <!--<result column="updated_time" jdbcType="datetime" property="updatedTime" />-->
+        <!--<result column="status" jdbcType="Integer" property="avatar" />-->
+        <!--<result column="feed" jdbcType="Integer" property="avatar" />-->
+        <!--<result column="login_time" jdbcType="datetime" property="loginTime" />-->
+        <!--<result column="inviter" jdbcType="varchar" property="inviter" />-->
+    <!--</resultMap>-->
+
+
+    <!--<insert id="inserts">-->
+		<!--insert into user(uid,username,password) values(#{uid},#{username},#{password})-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;findAll方法   通过namespace.id来确定SQL&ndash;&gt;-->
+    <!--<select id="findUsernameIsExist" parameterType="com.mz.modules.wechat.dao.entity.User"  resultType="userResultMap">-->
+        <!--SELECT * FROM wechat_user where name =#{name}-->
+    <!--</select>-->
+
+</mapper>

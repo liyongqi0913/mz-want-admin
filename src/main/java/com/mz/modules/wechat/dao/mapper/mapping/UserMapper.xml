@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mz.modules.wechat.dao.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="com.mz.modules.wechat.dao.entity.User">
+        <id property="id" column="id"/>
+        <result property="openid" column="openid"   />
+        <result property="nickname" column="nickname"   />
+        <result property="name" column="name"   />
+        <result property="gender" column="gender"   />
+        <result property="mobile" column="mobile"   />
+        <result property="idNumber" column="id_number"   />
+        <result property="email"  column="email"  />
+        <result property="avatar" column="avatar"   />
+        <result property="country" column="country"   />
+        <result property="province" column="province"   />
+        <result property="city" column="city"   />
+        <result property="createdTime" column="created_time"   />
+        <result property="updatedTime" column="updated_time"   />
+        <result property="avatar" column="status"   />
+        <result property="avatar" column="feed"   />
+        <result property="loginTime" column="login_time"   />
+        <result property="inviter" column="inviter"   />
+    </resultMap>
+
+
+
+</mapper>

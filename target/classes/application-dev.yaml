@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:mysql://47.114.116.18:3306/mz_want?useSSL=false&useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&useTimezone=true&serverTimezone=GMT%2B8&useLegacyDatetimeCode=false&allowMultiQueries=true
+    username: mz_admin
+    password: MZ_admin2020
+  redis:
+    host: localhost
+    port: 6379
+  thymeleaf:
+    mode: HTML
+    cache: false
+  mvc:
+    view:
+      prefix: /templates
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 10MB
+
+# MyBatis
+mybatis-plus:
+  mapper-locations: classpath*:com/mz/*/*/dao/mapper/mapping/*.xml
+  typeAliasesPackage: >
+    com.mz.modules.*.dao.entity,
+    com.mz.common.generator.entity
+  global-config:
+    id-type: 3  # 0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+logging:
+  level:
+    com.mz: debug
+server:
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+  port: 8902
